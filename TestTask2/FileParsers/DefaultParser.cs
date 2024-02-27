@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,7 +25,17 @@ namespace TestTask2.FileParsers
 
         public async Task<List<ParseResult>> ParseAsync(string filePath)
         {
-            var content = await File.ReadAllTextAsync(filePath);
+            string content;
+
+            try
+            {
+                content = await File.ReadAllTextAsync(filePath);
+            }
+            catch (Exception e)
+            {
+                Console.Write(e.Message);
+                return null;
+            }
 
             var result = new List<ParseResult>();
 

@@ -67,6 +67,7 @@ namespace TestTask2.Watcher
                     break;
 
                 case ".html":
+
                     parser = _parsers.FirstOrDefault(x => x.GetExtension() != null && x.GetExtension().Equals(".html"));
 
                     if (parser != null)
@@ -77,6 +78,7 @@ namespace TestTask2.Watcher
                     break;
 
                 default:
+
                     parser = _parsers.FirstOrDefault(x => x.GetExtension() == null);
 
                     if (parser != null)

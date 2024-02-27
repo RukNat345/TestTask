@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,9 +25,16 @@ namespace TestTask2.ReportWriter
 
         public async Task WriteAsync(ParseResult result)
         {
-            lock(this)
+            try
             {
-                File.AppendAllText(_resultDirectory, result.ToString());
+                lock (this)
+                {
+                    File.AppendAllText(_resultDirectory, result.ToString());
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message));
             }
         }
     }
